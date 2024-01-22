@@ -1,0 +1,11 @@
+notes.txt
+Landmark/Hand_Models
+Landmark/*.pt
+Landmark/Data
+Landmark/*.csv
+Landmark/*.jpg
+Traditional/Hand_Models
+Traditional/*.pt
+Traditional/Data
+Traditional/*.csv
+Landmark/*.jpg
