@@ -19,9 +19,9 @@ from modelClassLandmark import TheModelClass
 from createLandmarkCSV import csvBuilder
 
 # File pathings
-modelPATH = 'model-FFNN.pt'
-csvPATH = 'test.csv'
-trainingPATH = 'Hand_Models/custom'
+modelPATH = 'Landmark_CNN.pt'
+csvPATH = 'Landmark_CNN.csv'
+trainingPATH = 'Hand_Models/customASL'
 
 # Neural Network setttings
 cudnn.benchmark = True

@@ -15,8 +15,8 @@ from createTraditionalCSV import csvBuilder
 from customTraditionalDataset import TraditionalDataset
 
 # File pathings
-modelPATH = 'model-FFNN.pt'
-csvPATH = 'test.csv'
+modelPATH = 'Traditional_CNN.pt'
+csvPATH = 'Traditional_CNN.csv'
 trainingPATH = 'Hand Models/customASL'
 
 # Neural Network setttings
