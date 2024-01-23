@@ -98,7 +98,7 @@ if __name__ =="__main__":
 
     if (not os.path.isfile(modelPATH)):
         # Generate CSV file
-        data_file = csvBuilder(trainingPATH)
+        data_file = csvBuilder(trainingPATH, csvPATH)
 
         dataset = LandmarkDataset(csv_file = csvPATH, root_dir = 'Hand_Models/', transform = transforms.ToTensor())
         train_size = int(0.9 * len(dataset))

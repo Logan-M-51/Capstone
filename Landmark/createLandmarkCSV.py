@@ -11,7 +11,7 @@ class csvBuilder():
 		return cols
 
 
-	def buildCsv(self):
+	def buildCsv(self, csv_path):
 		data = []
 		tensor_val = 0
 		for path in self.cols:
@@ -24,14 +24,14 @@ class csvBuilder():
 			tensor_val += 1
 
 		# Write CSV file
-		with open("test.csv", "w", newline='') as fp:
+		with open(csv_path, "w", newline='') as fp:
 		    writer = csv.writer(fp, delimiter=",")
 		    writer.writerows(data)
 		print("csv training file created")
 
 
-	def __init__(self, file_path):
+	def __init__(self, file_path, csv_path):
 		self.file_path = file_path
-		self.csv = 'myCSV.csv'
+		self.csv_path = csv_path
 		self.cols = self.get_cols()
-		self.buildCsv()
+		self.buildCsv(csv_path)

@@ -8,7 +8,7 @@ from datetime import datetime
 import json
 
 data = []
-height, width = 200, 200
+height, width = 240, 320
 
 
 def parse_landmark(data):
@@ -23,8 +23,8 @@ if __name__ =="__main__":
 
 	cap = cv2.VideoCapture(0)
 	#Set the Webcam 
-	cap.set(3,200)
-	cap.set(4,200)
+	cap.set(3,340)
+	cap.set(4,240)
 	mpHands = mp.solutions.hands
 	hands = mpHands.Hands()
 	mpDraw = mp.solutions.drawing_utils
@@ -52,7 +52,7 @@ if __name__ =="__main__":
 					saved_frame = np.zeros((height,width,3), np.uint8)
 					mpDraw.draw_landmarks(saved_frame, hand, mpHands.HAND_CONNECTIONS)
 					mpDraw.draw_landmarks(img, hand, mpHands.HAND_CONNECTIONS)
-					name = "Landmark_C_%d.jpg"%count
+					name = "Landmark_Y_%d.jpg"%count
 					cv2.imwrite(name, saved_frame)
 					count += 1
 

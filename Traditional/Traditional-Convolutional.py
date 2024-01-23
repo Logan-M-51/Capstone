@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
 	# if torch model not defined
 	if (not os.path.isfile(modelPATH)):
-		data_file = csvBuilder(trainingPATH)
+		data_file = csvBuilder(trainingPATH, csvPATH)
 		# set up dataLoaders
 		dataset = TraditionalDataset(csv_file = csvPATH, root_dir = 'Hand Models/', transform = transforms.ToTensor())
 		train_size = int(0.8 * len(dataset))

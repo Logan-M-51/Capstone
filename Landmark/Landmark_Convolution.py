@@ -21,7 +21,7 @@ from createLandmarkCSV import csvBuilder
 # File pathings
 modelPATH = 'Landmark_CNN.pt'
 csvPATH = 'Landmark_CNN.csv'
-trainingPATH = 'Hand_Models/customASL'
+trainingPATH = 'Hand_Models/custom'
 
 # Neural Network setttings
 cudnn.benchmark = True
@@ -97,7 +97,7 @@ if __name__ =="__main__":
 
     if (not os.path.isfile(modelPATH)):
         # Generate CSV file
-        data_file = csvBuilder(trainingPATH)
+        data_file = csvBuilder(trainingPATH, csvPATH)
 
         dataset = LandmarkDataset(csv_file = csvPATH, root_dir = 'Hand_Models/', transform = transforms.ToTensor())
         train_size = int(0.8 * len(dataset))
