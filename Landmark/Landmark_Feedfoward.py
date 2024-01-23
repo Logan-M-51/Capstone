@@ -31,9 +31,6 @@ learning_rate = 1e-3
 batch_size = 32
 num_epochs = 1 
 
-# runtime flags
-calc_pred = False
-
 
 def check_accuracy(loader, model):
     num_correct = 0
@@ -128,7 +125,6 @@ if __name__ =="__main__":
     mpHands = mp.solutions.hands
     hands = mpHands.Hands()
     mpDraw = mp.solutions.drawing_utils
-    threads = list()
     prev = 0
     frameCnt = 0
 
@@ -159,13 +155,11 @@ if __name__ =="__main__":
                     char_idx = str(output_tensor).split(',')[0].strip('tensor(')
 
                     # calculate prediction confidence
-                    if (calc_pred):
-                        probs = str(max((torch.nn.functional.softmax(result, dim=1))[0]))
-                        confidence_score = str(probs.split(',')[0].strip("tensor("))
+                    # probs = str(max((torch.nn.functional.softmax(result, dim=1))[0]))
+                    # confidence_score = str(probs.split(',')[0].strip("tensor("))
+                    # print("Character: " + char_idx + " - Confidence Score: " + confidence_score)
 
-                        print("Character: " + char_idx + " - Confidence Score: " + confidence_score)
-                    else:
-                        print("Chracter: " + char_idx)
+                    print("Character: " + char_idx)
 
             current = time.time()
             fps = 1 / (current - prev)
@@ -175,6 +169,7 @@ if __name__ =="__main__":
             cv2.imshow("Image", img)
             cv2.waitKey(1)     
         except KeyboardInterrupt:
+            print("Finished running")
             break
 
 

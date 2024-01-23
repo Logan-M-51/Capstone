@@ -30,6 +30,7 @@ num_epochs = 1
 
 #fps calculation
 prev = 0
+frameCnt = 0
 
 def check_accuracy(loader, model):
 	num_correct = 0
@@ -133,21 +134,34 @@ if __name__ =="__main__":
 		sys.exit(1)
 
 	while (capture.isOpened()):	
-		# display capture on screen	
-		success, frame = capture.read()
-		current = time.time()
-		fps = 1 / (current - prev)
-		prev = current
-		cv2.putText(frame, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3,(255, 0, 255), 3)
-		cv2.imshow("Image", frame)
-		cv2.waitKey(1)
+		try: 
+			# display capture on screen	
+			success, frame = capture.read()
+		
+			frameCnt += 1
+			if frameCnt%3:
+				cvImg = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+				tensorImg = transforms.ToTensor()(cvImg)
+				tensorImg = tensorImg.to(device='cuda')
 
-		# Convert 
-		cvImg = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-		tensorImg = transforms.ToTensor()(cvImg)
-		tensorImg = tensorImg.to(device='cuda')
+				# get prediction
+				result = model(tensorImg.unsqueeze(0))
+				output_tensor = torch.argmax(result, 1)
+				char_idx = str(output_tensor).split(',')[0].strip('tensor(')
 
-		# get prediction
-		result = model(tensorImg.unsqueeze(0))
-		output = torch.argmax(result, 1)
-		print(output)
+				# calculate prediction confidence
+				# probs = str(max((torch.nn.functional.softmax(result, dim=1))[0]))
+				# confidence_score = str(probs.split(',')[0].strip("tensor("))	
+				# print("Character: " + char_idx + " - Confidence Score: " + confidence_score)
+
+				print("Character: " + char_idx)
+
+			current = time.time()
+			fps = 1 / (current - prev)
+			prev = current
+			cv2.putText(frame, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3,(255, 0, 255), 3)
+			cv2.imshow("Image", frame)
+			cv2.waitKey(1)
+		except KeyboardInterrupt:
+			print("Finished running")
+			break
