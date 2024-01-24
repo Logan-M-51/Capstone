@@ -21,7 +21,7 @@ from createLandmarkCSV import csvBuilder
 # File pathings
 modelPATH = 'Landmark_CNN.pt'
 csvPATH = 'Landmark_CNN.csv'
-trainingPATH = 'Hand_Models/custom'
+trainingPATH = 'Hand_Models/customASL'
 
 # Neural Network setttings
 cudnn.benchmark = True
@@ -86,8 +86,8 @@ def train_model(device):
 
 #Set the Webcam 
 def Webcam_200p(cap):
-    cap.set(3,200)
-    cap.set(4,200)
+    cap.set(3,320)
+    cap.set(4,240)
 
 if __name__ =="__main__":
 

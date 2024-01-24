@@ -51,39 +51,38 @@ def check_accuracy(loader, model):
     
 	model.train()
 
-def train_model(device):
+def train_model(device, train_loader):
 
-	model = Net()
-	model.to(device)
+    #instantiate Convolutional NN
+    model = Net()
+    model.to(device)
 
-	# settings for training
-	criterion = nn.CrossEntropyLoss()
-	optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+    # settings for training
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-	for epoch in range(2):  # loop over the dataset multiple times
+    for epoch in range(num_epochs):
+        losses=[]
+        for batch_idx, (data, targets) in enumerate(train_loader):
+            #get data to cuda
+            print(targets)
+            data = data.to(device=device)
+            targets = targets.to(device=device)
 
-		running_loss = 0.0
-		for i, data in enumerate(train_loader, 0):
-			# get the inputs; data is a list of [inputs, labels]
-			inputs, labels = data
-			inputs, labels = inputs.cuda(), labels.cuda()
+            # forward
+            scores = model(data)
+            loss = criterion(scores, targets)
+            losses.append(loss.item())
 
-			# zero the parameter gradients
-			optimizer.zero_grad()
+            # backward
+            optimizer.zero_grad()
+            loss.backward()
 
-			# forward + backward + optimize
-			outputs = model(inputs)
-			print(labels)
-			loss = criterion(outputs, labels)
-			loss.backward()
-			optimizer.step()
+            # gradient descent
+            optimizer.step()
 
-			# print statistics
-			running_loss += loss.item()
-			if i % 2000 == 1999:    # print every 2000 mini-batches
-				print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
-				running_loss = 0.0
-	return model
+        print(f'Cost at epoch {epoch} is {sum(losses)/len(losses)}')
+    return model
 
 #Set the Webcam 
 def Webcam_200p(cap):

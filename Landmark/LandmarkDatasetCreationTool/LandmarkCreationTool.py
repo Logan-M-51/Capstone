@@ -52,7 +52,7 @@ if __name__ =="__main__":
 					saved_frame = np.zeros((height,width,3), np.uint8)
 					mpDraw.draw_landmarks(saved_frame, hand, mpHands.HAND_CONNECTIONS)
 					mpDraw.draw_landmarks(img, hand, mpHands.HAND_CONNECTIONS)
-					name = "Landmark_Y_%d.jpg"%count
+					name = "Landmark_O1_%d.jpg"%count
 					cv2.imwrite(name, saved_frame)
 					count += 1
 
