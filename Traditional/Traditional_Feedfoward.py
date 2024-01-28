@@ -22,7 +22,7 @@ trainingPATH = 'Hand_Models/customASL'
 
 # Neural Network setttings
 cudnn.benchmark = True
-num_classes = 10
+num_classes = 25
 in_channel = 3
 learning_rate = 1e-3
 batch_size = 32
@@ -86,8 +86,8 @@ def train_model(device, train_loader):
 
 #Set the Webcam 
 def Webcam_200p(cap):
-    cap.set(3,200)
-    cap.set(4,200)
+    cap.set(3,320)
+    cap.set(4,240)
 
 
 if __name__ =="__main__":
@@ -107,7 +107,7 @@ if __name__ =="__main__":
 		test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True)
 		train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 		
-		model = train_model(device)
+		model = train_model(device, train_loader)
 		model.to('cuda')
 
 		print('Testing accuracy on newly trained model')

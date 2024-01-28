@@ -2,7 +2,6 @@ import os
 import cv2 
 import sys
 import time
-#import pandas
 import torch
 import torchvision
 import torch.nn as nn
