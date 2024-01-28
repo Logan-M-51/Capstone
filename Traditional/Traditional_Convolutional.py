@@ -17,7 +17,7 @@ from customTraditionalDataset import TraditionalDataset
 # File pathings
 modelPATH = 'Traditional_CNN.pt'
 csvPATH = 'Traditional_CNN.csv'
-trainingPATH = 'Hand Models/customASL'
+trainingPATH = 'Hand_Models/customASL'
 
 # Neural Network setttings
 cudnn.benchmark = True
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 	if (not os.path.isfile(modelPATH)):
 		data_file = csvBuilder(trainingPATH, csvPATH)
 		# set up dataLoaders
-		dataset = TraditionalDataset(csv_file = csvPATH, root_dir = 'Hand Models/', transform = transforms.ToTensor())
+		dataset = TraditionalDataset(csv_file = csvPATH, root_dir = 'Hand_Models/', transform = transforms.ToTensor())
 		train_size = int(0.8 * len(dataset))
 		test_size = len(dataset) - train_size
 		train_set, test_set = torch.utils.data.random_split(dataset, [train_size, test_size])

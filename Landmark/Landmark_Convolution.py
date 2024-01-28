@@ -86,8 +86,8 @@ def train_model(device):
 
 #Set the Webcam 
 def Webcam_200p(cap):
-    cap.set(3,320)
-    cap.set(4,240)
+    cap.set(3,200)
+    cap.set(4,200)
 
 if __name__ =="__main__":
 

@@ -7,6 +7,7 @@ class csvBuilder():
 		cols = []
 		for i,j,y in os.walk(self.file_path):
 			cols.append(i)
+		print(cols)
 		return cols
 
 

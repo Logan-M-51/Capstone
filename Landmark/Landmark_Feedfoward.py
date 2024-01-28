@@ -19,8 +19,8 @@ from createLandmarkCSV import csvBuilder
 
 
 # File pathings
-modelPATH = 'Traditional_FFNN.pt'
-csvPATH = 'Traditional_FFNN.csv'
+modelPATH = 'Landmark_FFNN.pt'
+csvPATH = 'Landmark_FFNN.csv'
 trainingPATH = 'Hand_Models/customASL'
 
 # Neural Network setttings
