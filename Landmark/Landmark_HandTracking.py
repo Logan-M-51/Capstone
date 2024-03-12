@@ -11,7 +11,6 @@ import numpy as np
 import mediapipe as mp
 import json
 import torchvision.transforms as transforms
-from FFNN import Net
 from ASL import asl_dict
 from torch.utils.data import DataLoader
 from torch.backends import cudnn
