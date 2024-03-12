@@ -19,7 +19,8 @@ if __name__ =="__main__":
 		success, frame = capture.read()
 		cv2.imshow("Image", frame)
 		cv2.waitKey(1)
-		name = "LTM_test_%d.jpg"%count
+
+		name = "Traditional_%d.jpg"%count
 		frame = cv2.resize(frame, (200,200))
 		cv2.imwrite(name, frame)
 		count+=1
